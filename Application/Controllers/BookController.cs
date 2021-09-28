@@ -9,6 +9,7 @@ using Application.Core.Entities;
 using MediatR;
 using Application.Core.Messages.Commands;
 using Application.Core.Messages.Queries;
+using Microsoft.AspNetCore.Cors;
 
 namespace Application.API.Controllers
 {
@@ -22,30 +23,32 @@ namespace Application.API.Controllers
         {
             this.mediator = mediator;
         }
-
-       [HttpGet("/get/all")]
+        [EnableCors]
+        [HttpGet("/get/all")]
        public async Task<IActionResult> GetAllBooks()
         {
             var response = await mediator.Send(new GetAllQuery<Book>());
             return response == null ? NotFound() : Ok(response);
         }
-
+        [EnableCors]
         [HttpGet("/get/{id}")]
         public async Task<IActionResult> GetBookById(int id)
         {
             var response = await mediator.Send(new GetQuery<Book>(id));
             return response == null ? NotFound() : Ok(response);
         }
-
-        [HttpPost("")]
+        [EnableCors]
+        [HttpPost("/add/{name}/{price}")]
         public async Task<IActionResult> AddBook(string name, double price) => 
             Ok(await mediator.Send(new CreateCommand<Book>(new Book(name, price))));
 
+        [EnableCors]
         [HttpDelete("/delete/{id}")]
         public async Task<IActionResult> DeleteBook(int id) =>
             Ok(await mediator.Send(new DeleteCommand<Book>(id)));
 
-        [HttpPut("/update/{id}")]
+        [EnableCors]
+        [HttpPut("/update/{id}/{name}/{price}")]
         public async Task<IActionResult> UpdateBook(int id, string name, double price) =>
             Ok(await mediator.Send(new UpdateCommand<Book>(id, new Book(name, price))));
         

@@ -43,6 +43,8 @@ namespace Application
             var assembly = AppDomain.CurrentDomain.Load("Application.Infrastructure.Services");
             services.AddMediatR(assembly);
 
+            services.AddCors();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Application", Version = "v1" });
@@ -62,6 +64,8 @@ namespace Application
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseAuthorization();
 
