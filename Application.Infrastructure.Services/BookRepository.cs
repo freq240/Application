@@ -41,12 +41,12 @@ namespace Application.Infrastructure.Data
             return await orderContext.Books.AsNoTracking().ToListAsync();
         }
 
-        public async Task UpdateAsync(int id, Book newBook)
+        public async Task UpdateAsync(int id, string name, double price)
         {
             var book = await orderContext.Books.FirstOrDefaultAsync(x => x.Id == id);
 
-            book.Name = newBook.Name;
-            book.Price = newBook.Price;
+            book.Name = name;
+            book.Price = price;
 
             orderContext.Books.Update(book);
 

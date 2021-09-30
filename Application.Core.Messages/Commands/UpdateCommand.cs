@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 
 namespace Application.Core.Messages.Commands
 {
-    public record UpdateCommand<T>(int id, T item): IRequest
+    public record UpdateCommand<T>(int id, string name, double price): IRequest
         where T: class;
 }

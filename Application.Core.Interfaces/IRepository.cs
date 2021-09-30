@@ -9,7 +9,7 @@ namespace Application.Core.Interfaces
         Task<List<T>> GetAllAsync();
         Task<T> GetAsync(int id);
         Task CreateAsync(T item);
-        Task UpdateAsync(int id, T item);
+        Task UpdateAsync(int id, string name, double price);
         Task DeleteAsync(int id);
     }
 }

@@ -10,7 +10,6 @@ namespace Application.Core.Interfaces
     public interface IUnitOfWork
     {
         IRepository<Book> BookRepository { get; }
-        IRepository<Order> OrderRepository { get; }
         Task CommitAsync();
     }
 }

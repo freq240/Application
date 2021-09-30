@@ -21,7 +21,7 @@ namespace Application.Infrastructure.Services.Handlers
         }
         public async Task<Unit> Handle(Core.Messages.Commands.UpdateCommand<Book> request, CancellationToken cancellationToken)
         {
-            await unitOfWork.BookRepository.UpdateAsync(request.id, request.item);
+            await unitOfWork.BookRepository.UpdateAsync(request.id, request.name, request.price);
 
             return Unit.Value;
         }

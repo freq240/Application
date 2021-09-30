@@ -12,7 +12,7 @@ namespace Application.Infrastructure.Data
     {
         protected readonly OrderContext orderContext;
         private IRepository<Book> bookRepository;
-        private IRepository<Order> orderRepository;
+       
 
         public UnitOfWork(OrderContext orderContext)
         {
@@ -27,13 +27,6 @@ namespace Application.Infrastructure.Data
             }
         }
 
-        public IRepository<Order> OrderRepository
-        {
-            get
-            {
-                return orderRepository = orderRepository ?? new OrderRepository(orderContext);
-            }
-        }
 
         public async Task CommitAsync()
         {
